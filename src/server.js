@@ -25,8 +25,8 @@ const handleHome = (req, res) => {
 const handleProtected = (req, res) => {
   return res.send("Welcome to the private lounge.");
 };
-app.use(logger);
-app.use(privateMiddleware);
+app.use(logger, privateMiddleware);
+//middleware는 위에 존재해야함
 app.get("/", handleHome);
 //application에게 home으로 gety request를 보낸다면 반응하는 callback을 만듬
 app.get("/protexted", handleProtected);
