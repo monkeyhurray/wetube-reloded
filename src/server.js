@@ -24,7 +24,7 @@ const login = (req, res) => {
 };
 
 app.get("/", home);
-//application에게 home으로 gety request를 보낸다면 반응하는 callback을 만듬
+//application에게 home으로 get request를 보낸다면 반응하는 callback을 만듬
 app.get("/login", login);
 const handleListening = () =>
   console.log(`Server listening on port http://localhost:${PORT}`);
