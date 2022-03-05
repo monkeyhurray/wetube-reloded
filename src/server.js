@@ -6,8 +6,12 @@ import userRouter from "./routers/userRouter";
 
 const PORT = 4000;
 
+console.log(process.cwd());
+
 const app = express();
 const logger = morgan("dev");
+app.set("view engine", "pug");
+app.set("views", process.cwd() + "/src/views");
 app.use(logger);
 //middleware는 위에 존재해야함
 
