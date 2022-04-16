@@ -11,6 +11,7 @@ const logger = morgan("dev");
 app.set("view engine", "pug");
 app.set("views", process.cwd() + "/src/views");
 app.use(logger);
+app.use(express.urlencoded({ extended: true }));
 //middleware는 위에 존재해야함
 
 app.use("/", globalRouter);
