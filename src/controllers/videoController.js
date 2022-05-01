@@ -12,24 +12,18 @@ Video.find({}, (error, videos) => {
 */
 
 export const home = async (req, res) => {
-  try {
-    const videos = await Video.find({});
-    console.log(videos); //db에 저장된걸 볼 수 있음
-    return res.render("home", { pageTitle: "Home", videos });
-  } catch {
-    return res.render("server-error");
-  }
+  const videos = await Video.findOne({});
+  return res.render("home", { pageTitle: "Home", videos });
 };
 
-export const watch = (req, res) => {
+export const watch = async (req, res) => {
   const { id } = req.params;
-
-  return res.render("watch", { pageTitle: `Watching` });
+  const video = await Video.findById(id);
+  return res.render("watch", { pageTitle: video.title, video });
 };
 
 export const getEdit = (req, res) => {
   const { id } = req.params;
-
   return res.render("edit", { pageTitle: `Editing` });
 };
 export const postEdit = (req, res) => {
@@ -48,12 +42,7 @@ export const postUpload = async (req, res) => {
     await Video.create({
       title,
       description,
-      createdAt: Date.now(),
       hashtags: hashtags.split(",").map((word) => `#${word}`),
-      meta: {
-        views: 0,
-        rating: 0,
-      },
     });
     return res.redirect("/");
   } catch (error) {
