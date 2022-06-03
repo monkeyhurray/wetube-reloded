@@ -6,7 +6,6 @@ export const localsMiddleware = (req, res, next) => {
   next();
 };
 //현재 로그인된 사용자를 가리킴
-
 export const protectorMiddleware = (req, res, next) => {
   if (req.session.loggedIn) {
     return next();
@@ -22,3 +21,4 @@ export const publicOnlyMiddleware = (req, res, next) => {
     return res.redirect("/");
   }
 };
+//로그인한 상태에서 다시 로그인 페이지로 가지 않기 위해
