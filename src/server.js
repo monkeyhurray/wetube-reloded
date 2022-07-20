@@ -6,7 +6,6 @@ import rootRouter from "./routers/rootRouter";
 import videoRouter from "./routers/videoRouter";
 import userRouter from "./routers/userRouter";
 import { localsMiddleware } from "./routers/middlewares";
-
 const app = express();
 const logger = morgan("dev");
 
@@ -23,10 +22,6 @@ app.use(
   })
 );
 
-app.get("/add-one", (req, res, next) => {
-  req.session.potato += 1;
-  return res.send(`${req.session.id}\n${req.session.potato}`);
-});
 //middleware는 위에 존재해야함
 app.use(localsMiddleware);
 app.use("/", rootRouter);

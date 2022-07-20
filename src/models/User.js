@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
   avartarUrl: String, //required이기 때문에 String만 작성함
   socialOnly: { type: Boolean, default: false },
   username: { type: String, required: true, unique: true },
-  password: { type: String },
+  password: { type: String, required: true },
   name: { type: String, required: true },
   location: String,
 });
