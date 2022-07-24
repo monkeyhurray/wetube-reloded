@@ -91,6 +91,7 @@ export const finishGithubLogin = async (req, res) => {
     })
   ).json();
   if ("access_token" in tokenRequest) {
+    //access api
     const { access_token } = tokenRequest;
     const apiUrl = "https://api.github.com";
     const userData = await (
