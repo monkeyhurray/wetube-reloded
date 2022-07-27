@@ -1,6 +1,7 @@
 import User from "../models/User";
 import fetch from "node-fetch";
 import bcrypt from "bcrypt";
+import session from "express-session";
 
 export const getJoin = (req, res) => res.render("join", { pageTitle: "Join" });
 export const postJoin = async (req, res) => {
@@ -72,6 +73,7 @@ export const startGithubLogin = (req, res) => {
   const finalUrl = `${baseUrl}?${params}`;
   return res.redirect(finalUrl);
 };
+//user를 Github에 보냄, 처리가 끝나면 finish로 보내줌
 
 export const finishGithubLogin = async (req, res) => {
   const baseUrl = "https://github.com/login/oauth/access_token";
@@ -143,6 +145,7 @@ export const getEdit = (req, res) => {
     pageTitle: "Edit Profile",
   });
 };
+
 export const postEdit = async (req, res) => {
   const {
     session: {
@@ -160,9 +163,24 @@ export const postEdit = async (req, res) => {
     },
     { new: true }
   );
+  const findEmail = await User.findOne({ email });
+  if (findEmail && findEmail._id.toString() !== _id) {
+    return res.status(400).render("edit-profile", {
+      pageTitle,
+      errorMessage: "This email is already taken.",
+    });
+  }
+  const findUsername = await User.findOne({ username });
+  if (findUsername && findUsername._id.toString() !== _id) {
+    return res.status(400).render("edit-profile", {
+      pageTitle,
+      errorMessage: "This username is already taken.",
+    });
+  }
   req.session.user = updatedUser;
-  return res.redirect("/users/edit");
+  return res.rendirect("/users/edit");
 };
+
 export const getChangePassword = (req, res) => {
   if (req.session.user.socialOnly === true) {
     return res.redirect("/");
