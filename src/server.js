@@ -25,6 +25,7 @@ app.use(
 //session middleware는 localsMiddleware위에 존재해야함
 app.use(localsMiddleware);
 app.use("/uploads", express.static("uploads"));
+app.use("/static", express.static("assets"));
 app.use("/", rootRouter);
 app.use("/videos", videoRouter);
 app.use("/users", userRouter);
