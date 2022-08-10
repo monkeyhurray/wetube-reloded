@@ -10,15 +10,17 @@ header
                 li 
                     a(href="/Videos/upload") Upload Video
                 li
-                    a(href=`/users/${loggedInUser._id}`) My Profile
-                li
                     a(href="/users/edit") Edit Profile
                 li 
                     a(href="/users/logout") Log Out
-                    
+                li
+                    a(href=`/users/${loggedInUser._id}`)
+                        if loggedInUser.avatarUrl === ""
+                            span 😃
+                        else
+                            img.header__avatar(src="/" + loggedInUser.avatarUrl)
             else
                 li
-                    a(href="/join") Join
+                    a(href="/login") Login
                 li
-                    a(href="/login").header__btn Login
-            
+                    a(href="/join").header__btn Join
