@@ -79,6 +79,7 @@ const handleStop = () => {
 
 const handleStart = () => {
   actionBtn.innerText = "Stop Recording";
+
   actionBtn.removeEventListener("click", handleStart);
   actionBtn.addEventListener("click", handleStop);
 

@@ -1,5 +1,5 @@
 import User from "../models/User";
-import Video from "../models/Video";
+
 import fetch from "node-fetch";
 import bcrypt from "bcrypt";
 
@@ -40,6 +40,7 @@ export const postJoin = async (req, res) => {
 
 export const getLogin = (req, res) =>
   res.render("login", { pageTitle: "Login" });
+
 export const postLogin = async (req, res) => {
   const { username, password } = req.body;
   const pageTitle = "Login";
@@ -141,6 +142,7 @@ export const logout = (req, res) => {
   req.flash("info", "Bye Bye");
   return res.redirect("/");
 };
+
 export const getEdit = (req, res) => {
   return res.render("edit-profile", {
     pageTitle: "Edit Profile",
@@ -191,6 +193,7 @@ export const getChangePassword = (req, res) => {
   }
   return res.render("users/change-password", { pageTitle: "Change Password" });
 };
+
 export const postChangePassword = async (req, res) => {
   const {
     session: {
@@ -217,6 +220,7 @@ export const postChangePassword = async (req, res) => {
   req.flash("info", "Password updated");
   return res.redirect("/");
 };
+
 export const see = async (req, res) => {
   const { id } = req.params;
   const user = await User.findById(id).populate({

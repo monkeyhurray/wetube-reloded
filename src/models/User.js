@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
-  avartarUrl: String, //required이기 때문에 String만 작성함
+  avatarUrl: String, //required이기 때문에 String만 작성함
   socialOnly: { type: Boolean, default: false },
   username: { type: String, required: true, unique: true },
   password: { type: String },
