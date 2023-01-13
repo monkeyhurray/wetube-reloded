@@ -16,4 +16,4 @@
 /videos/:id/delete -> Delete Video
 /videos/upload -> Upload Video
 
-/회사 취업하고싶다.
+/취업하고 싶습니다.
